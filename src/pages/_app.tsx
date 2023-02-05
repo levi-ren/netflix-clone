@@ -15,6 +15,7 @@ const netflixFont = localFont({
       style: "normal",
     },
   ],
+  variable: "--font-inter",
 });
 
 export default function App({ Component, pageProps }: AppProps) {

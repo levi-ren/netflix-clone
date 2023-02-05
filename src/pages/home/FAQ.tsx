@@ -40,7 +40,7 @@ export default function FAQ() {
   return (
     <section id="FAQ" className="border-b-8 border-[#222] bg-black">
       <div className="m-auto mb-4 pt-14 text-white sm:mb-7 lg:mb-16">
-        <p className="m-2 mb-4 px-6 text-center text-2xl font-semibold sm:mb-7 sm:text-4xl lg:mb-16 lg:text-5xl">
+        <p className="m-2 mb-4 px-6 text-center text-2xl font-medium sm:mb-7 sm:text-4xl lg:mb-16 lg:text-5xl">
           Frequently Asked Questions
         </p>
 

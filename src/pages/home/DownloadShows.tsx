@@ -32,7 +32,7 @@ export default function DownloadShows() {
             </div>
           </div>
           <div>
-            <p className="text-2xl font-semibold sm:text-4xl sm:leading-[3.5rem] lg:text-[50px]">
+            <p className="text-2xl font-medium sm:text-4xl sm:leading-[3.5rem] lg:text-[50px]">
               Download your shows to watch offline.
             </p>
             <p className="mt-4 text-lg sm:text-xl lg:text-2xl">
@@ -47,7 +47,7 @@ export default function DownloadShows() {
       >
         <div className="lg:m- m-auto max-w-7xl px-4 py-12 text-center text-white sm:px-10 sm:py-20 lg:flex lg:text-left">
           <div className="lg:flex-1">
-            <p className="text-2xl font-semibold sm:text-4xl sm:leading-[3.5rem] lg:text-[50px]">
+            <p className="text-2xl font-medium sm:text-4xl sm:leading-[3.5rem] lg:text-[50px]">
               Watch everywhere.
             </p>
             <p className="mt-4 text-lg sm:text-xl lg:pr-16 lg:text-2xl">

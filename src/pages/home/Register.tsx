@@ -17,7 +17,7 @@ const Register = () => {
           />
           <label
             htmlFor={id}
-            className="peer-focus absolute top-1/2 left-2.5 z-10 origin-[0] -translate-y-7 scale-[.85] transform text-sm text-gray-500 duration-150 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:-translate-y-7 peer-focus:scale-[.85] peer-focus:font-semibold peer-[&:not(:placeholder-shown)]:font-semibold"
+            className="peer-focus absolute top-1/2 left-2.5 z-10 origin-[0] -translate-y-7 scale-[.85] transform text-sm text-gray-500 duration-150 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:-translate-y-7 peer-focus:scale-[.85] peer-focus:font-medium peer-[&:not(:placeholder-shown)]:font-medium"
           >
             Email address
           </label>

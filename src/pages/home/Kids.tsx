@@ -8,7 +8,7 @@ export default function Kids() {
           <Image fill src="/images/kids.png" alt="download-show" />
         </div>
         <div className="lg:pl-20">
-          <p className="text-2xl font-semibold sm:text-4xl sm:leading-[3.5rem] lg:text-[50px]">
+          <p className="text-2xl font-medium sm:text-4xl sm:leading-[3.5rem] lg:text-[50px]">
             Create profiles for kids.
           </p>
           <p className="mt-4 text-lg sm:text-xl lg:text-2xl">
