@@ -1,23 +1,35 @@
-import { useId } from "react";
+import { UseFormRegisterReturn } from "react-hook-form/dist/types";
 
-const InputField = () => {
-  const id = useId();
+interface InputFieldProps {
+  register: UseFormRegisterReturn<"email">;
+  error?: string;
+}
+
+const InputField = ({ register, error }: InputFieldProps) => {
   return (
-    <div className="group relative w-full flex-1">
-      <input
-        placeholder=" "
-        type="email"
-        id={id}
-        className="peer w-full rounded border border-none bg-zinc-700 px-[10px] pt-6 pb-2   text-sm text-stone-300 invalid:empty:bg-red-600 focus:outline-none sm:text-base"
-        autoComplete="new-password"
-        defaultValue=" "
-      />
-      <label
-        htmlFor={id}
-        className="peer-focus absolute top-1/2 left-2.5 z-10 origin-[0] -translate-y-5 scale-[.85] transform text-sm text-stone-300 duration-150 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:-translate-y-5 peer-focus:scale-[.85] peer-focus:font-medium peer-[&:not(:placeholder-shown)]:font-medium"
+    <div>
+      <div
+        className={`group relative w-full flex-1 rounded ${
+          error && "border-b-2 border-b-[#e87c03]"
+        }`}
       >
-        Email or phone number
-      </label>
+        <input
+          {...register}
+          placeholder=" "
+          id="sign-in-email"
+          className={`peer w-full rounded border border-none bg-zinc-700 px-[10px] pt-6 pb-2   text-sm text-stone-300 focus:outline-none sm:text-base`}
+          autoComplete="new-password"
+          defaultValue=""
+        />
+        <label
+          htmlFor="sign-in-email"
+          className="peer-focus absolute top-1/2 left-2.5 z-10 origin-[0] -translate-y-5 scale-[.85] transform text-sm text-stone-300 duration-150 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:-translate-y-5 peer-focus:scale-[.85] peer-focus:font-medium peer-[&:not(:placeholder-shown)]:font-medium"
+        >
+          Email or phone number
+        </label>
+      </div>
+
+      <p className="py-2 text-xs text-[#e87c03]">{error}</p>
     </div>
   );
 };

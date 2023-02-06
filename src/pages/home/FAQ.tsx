@@ -64,8 +64,8 @@ export default function FAQ() {
                 />
               </button>
               <p
-                className={`overflow-hidden whitespace-pre-line  transition-all ${
-                  active === i ? "max-h-[700px] p-4" : "max-h-0"
+                className={`overflow-hidden whitespace-pre-line px-4 transition-all ${
+                  active === i ? "max-h-[700px] py-4" : "max-h-0"
                 }`}
               >
                 {item.details}

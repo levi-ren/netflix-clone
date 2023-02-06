@@ -20,7 +20,7 @@ const netflixFont = localFont({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main id="main app" className={netflixFont.className}>
+    <main id="main app" className={`${netflixFont.className} relative`}>
       <Component {...pageProps} />
     </main>
   );

@@ -1,22 +1,57 @@
 import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { SubmitHandler } from "react-hook-form/dist/types";
 import InputField from "./InputField";
 import PasswordField from "./PasswordField";
 
-interface SignInProps {}
+interface Creds {
+  email: string;
+  password: string;
+}
 
-const SignIn = (props: SignInProps) => {
+const SignIn = () => {
+  const { register, handleSubmit, getFieldState, formState } = useForm<Creds>({
+    mode: "onSubmit",
+    shouldFocusError: false,
+  });
+  const onSubmit: SubmitHandler<Creds> = (e) => {};
   return (
-    <div className="m-auto max-w-md">
-      <div className="p-4 text-white md:p-16">
+    <div className="m-auto max-w-md flex-1 md:mb-32 md:mt-12">
+      <div className="rounded p-4 text-white md:bg-black md:bg-opacity-80 md:p-16 md:pb-14">
         <p className="mt-4 mb-8 text-4xl font-medium">Sign In</p>
 
-        <form className="flex flex-col gap-4" noValidate>
-          <InputField />
-          <PasswordField />
+        <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
+          <InputField
+            register={register("email", {
+              required: "Please enter a valid email or phone number.",
+              pattern: {
+                value: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+                message: "Please enter a valid email.",
+              },
+            })}
+            error={getFieldState("email", formState).error?.message}
+          />
+          <PasswordField
+            register={register("password", {
+              required:
+                "Your password must contain between 4 and 60 characters.",
+              minLength: {
+                value: 4,
+                message:
+                  "Your password must contain between 4 and 60 characters.",
+              },
+              maxLength: {
+                value: 60,
+                message:
+                  "Your password must contain between 4 and 60 characters.",
+              },
+            })}
+            error={getFieldState("password", formState).error?.message}
+          />
 
           <button
             type="submit"
-            className="mt-7 w-full rounded bg-monza-600 py-4 font-medium"
+            className="my-3 w-full rounded bg-monza-600 py-4 font-medium"
           >
             Sign In
           </button>
@@ -34,7 +69,7 @@ const SignIn = (props: SignInProps) => {
             <a href="#">Need help?</a>
           </div>
 
-          <div className="text-stone-400">
+          <div className="my-20 text-stone-400">
             <p>
               New to Netflix?{" "}
               <Link href="/login" className="text-white">

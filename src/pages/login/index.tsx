@@ -1,15 +1,30 @@
 import Image from "next/image";
 import Header from "../components/Header";
 import Helmet from "../components/Helmet";
+import Footer from "../home/Footer";
 import SignIn from "./SignIn";
 
 export default function Login() {
   return (
     <>
-      <Helmet />
       <Header />
+      <Helmet />
+      <div className="md:flex md:min-h-[calc(100vh_-_68px)] md:flex-col">
+        <SignIn />
+        <Footer
+          definedItems={[
+            "FAQ",
+            "Help Center",
+            "Terms of Use",
+            "Privacy",
+            "Cookie Preferences",
+            "Corporate Information",
+          ]}
+          className="mt-14 border-t-2 border-zinc-500 bg-black bg-opacity-50 text-sm md:mt-0 md:h-full md:border-none"
+        />
+      </div>
 
-      <div className="absolute inset-0 -top-[76px] -z-10 hidden overflow-hidden md:block">
+      <div className="absolute top-0 -z-10 hidden h-full min-h-screen w-full overflow-hidden bg-cover md:block">
         <Image
           src="/images/banner.jpg"
           fill
@@ -18,10 +33,7 @@ export default function Login() {
           priority
         />
       </div>
-
-      <div className="absolute inset-0 -top-[76px] -z-10 bg-black md:opacity-60" />
-
-      <SignIn />
+      <div className="absolute top-0 -z-10 h-full min-h-screen w-full bg-black md:opacity-60" />
     </>
   );
 }

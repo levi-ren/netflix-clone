@@ -6,7 +6,7 @@ export default function Header() {
   const { route } = useRouter();
 
   return (
-    <header className="pt-7">
+    <div id="header" className="pt-7">
       <div className="m-auto max-w-screen-3xl">
         <div className="mx-4 flex items-center justify-between xs:mx-6 sm:mx-14">
           <div className="relative h-8 w-24 md:h-10 md:w-28 xl:h-12 xl:w-44">
@@ -23,6 +23,6 @@ export default function Header() {
           )}
         </div>
       </div>
-    </header>
+    </div>
   );
 }
