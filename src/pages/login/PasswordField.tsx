@@ -27,7 +27,7 @@ const PasswordField = ({ register, error }: PasswordFieldProps) => {
           />
           <label
             htmlFor="password-field"
-            className="peer-focus absolute top-1/2 left-2.5 z-10 origin-[0] -translate-y-5 scale-[.85] transform text-sm  duration-150 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:-translate-y-5 peer-focus:scale-[.85] peer-focus:font-medium peer-[&:not(:placeholder-shown)]:font-medium"
+            className="peer-focus absolute top-1/2 left-2.5 z-10 origin-[0] -translate-y-6 scale-[.85] transform text-sm  duration-150 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-autofill:text-black peer-focus:-translate-y-6 peer-focus:scale-[.85] "
           >
             Password
           </label>

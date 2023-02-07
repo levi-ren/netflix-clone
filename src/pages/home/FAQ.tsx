@@ -51,16 +51,18 @@ export default function FAQ() {
               className="m-auto mb-2 max-w-[480px] divide-y divide-black bg-stone-800 text-lg md:max-w-[600px]  md:text-xl lg:max-w-[750px] lg:text-2xl"
             >
               <button
-                className="flex w-full items-center justify-between p-4 lg:p-6"
+                className="flex w-full items-center justify-between p-4  lg:p-6"
                 onClick={() => setActive(i === active ? -1 : i)}
               >
                 {item.summary}
                 <Image
-                  src="/icons/chevron.svg"
-                  height={20}
-                  width={20}
+                  src="/icons/plus.svg"
+                  height={24}
+                  width={24}
                   alt="logo"
-                  className={`${active === i ? "-rotate-270" : "-rotate-180"}`}
+                  className={`${
+                    active === i && "rotate-45"
+                  } h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 `}
                 />
               </button>
               <p

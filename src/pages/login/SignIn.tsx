@@ -1,4 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { SubmitHandler } from "react-hook-form/dist/types";
 import InputField from "./InputField";
@@ -10,22 +12,29 @@ interface Creds {
 }
 
 const SignIn = () => {
+  const route = useRouter();
   const { register, handleSubmit, getFieldState, formState } = useForm<Creds>({
     mode: "onSubmit",
     shouldFocusError: false,
   });
-  const onSubmit: SubmitHandler<Creds> = (e) => {};
+  const onSubmit: SubmitHandler<Creds> = (e) => {
+    route.push("/browse");
+  };
   return (
     <div className="m-auto max-w-md flex-1 md:mb-32 md:mt-12">
       <div className="rounded p-4 text-white md:bg-black md:bg-opacity-80 md:p-16 md:pb-14">
         <p className="mt-4 mb-8 text-4xl font-medium">Sign In</p>
 
-        <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="flex flex-col gap-2"
+          onSubmit={handleSubmit(onSubmit)}
+          autoComplete="new-password"
+        >
           <InputField
             register={register("email", {
               required: "Please enter a valid email or phone number.",
               pattern: {
-                value: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+                value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
                 message: "Please enter a valid email.",
               },
             })}
@@ -51,9 +60,20 @@ const SignIn = () => {
 
           <button
             type="submit"
-            className="my-3 w-full rounded bg-monza-600 py-4 font-medium"
+            className="my-3 w-full rounded bg-monza-600 py-4 font-medium disabled:bg-opacity-50"
+            disabled={formState.isSubmitted}
           >
-            Sign In
+            {formState.isSubmitted ? (
+              <Image
+                src="/images/spinner.png"
+                width={20}
+                height={20}
+                alt="spinner"
+                className="m-auto animate-spin"
+              />
+            ) : (
+              "Sign In"
+            )}
           </button>
 
           <div className="inline-flex items-center justify-between text-xs  text-stone-400">
@@ -62,6 +82,7 @@ const SignIn = () => {
                 type="checkbox"
                 id="remember-me"
                 className="h-4 w-4 rounded accent-zinc-600"
+                defaultChecked
               />
               <label htmlFor="remember-me">Remember me</label>
             </div>

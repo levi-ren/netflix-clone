@@ -12,7 +12,7 @@ const Register = () => {
         <div className="relative w-full flex-1">
           <input
             id={id}
-            className="peer w-full rounded-sm border  px-[10px] py-4 text-sm text-black focus:border-blue-200 focus:outline-none focus:ring-0  sm:text-base"
+            className="peer w-full rounded-sm border  px-[10px] py-4 text-sm text-black focus:border-blue-200 focus:outline-none focus:ring-0  sm:rounded-r-none sm:text-base"
             placeholder=" "
           />
           <label
@@ -22,7 +22,7 @@ const Register = () => {
             Email address
           </label>
         </div>
-        <button className="flex items-center justify-between rounded-sm border border-monza-600 bg-monza-600 py-2 px-4 text-white sm:h-[58px] ">
+        <button className="flex items-center justify-between rounded-sm border border-monza-600 bg-monza-600 py-2 px-4 text-white sm:h-[58px] sm:rounded-l-none">
           Get Started
           <Image
             src="/icons/chevron.svg"
