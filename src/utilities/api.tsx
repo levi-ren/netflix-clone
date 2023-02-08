@@ -1,3 +1,2 @@
-export const fetcher = async (url: string, params: Record<string, string>) => {
-  return await fetch(url + new URLSearchParams(params).toString());
-};
+export const fetcher = async (url: string, params: Record<string, string>) =>
+  fetch(url + new URLSearchParams(params)).then((res) => res.json());
