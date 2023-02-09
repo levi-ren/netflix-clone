@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useRandomTV } from "../../swrHooks";
 import Helmet from "../components/Helmet";
-import { useRandomTV } from "../swrHooks";
 
 export default function Browse() {
   const [language, setLanguage] = useState("");
