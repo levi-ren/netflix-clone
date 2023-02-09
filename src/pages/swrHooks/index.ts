@@ -3,9 +3,7 @@ import useSWR from "swr";
 
 export const useRandomTV = (country: string, language: string) =>
   useSWR(
-    country && language
-      ? ["http://localhost:3000/api/randTV?", country, language]
-      : null,
+    country && language ? ["/api/randTV?", country, language] : null,
     ([r, c, l]) =>
       fetcher(r, {
         country: c,
@@ -20,7 +18,7 @@ export const useRandomTV = (country: string, language: string) =>
 
 export const useDiscoverTV = (country: string) =>
   useSWR(
-    country ? ["http://localhost:3000/api/discoverTV?", country] : null,
+    country ? ["/api/discoverTV?", country] : null,
     ([r, l]) =>
       fetcher(r, {
         country: l,
@@ -34,7 +32,7 @@ export const useDiscoverTV = (country: string) =>
 
 export const useDiscoverMovie = (country: string) =>
   useSWR(
-    country ? ["http://localhost:3000/api/discoverMovie?", country] : null,
+    country ? ["/api/discoverMovie?", country] : null,
     ([r, l]) =>
       fetcher(r, {
         country: l,
@@ -48,10 +46,7 @@ export const useDiscoverMovie = (country: string) =>
 
 export const useTVImage = (language: string, id: string) =>
   useSWR(
-    () =>
-      language && id
-        ? ["http://localhost:3000/api/tvImage?", language, id]
-        : null,
+    () => (language && id ? ["/api/tvImage?", language, id] : null),
     ([r, l, i]) =>
       fetcher(r, {
         language: l,
