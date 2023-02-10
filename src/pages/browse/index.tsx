@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRandomTV } from "../../swrHooks";
 import Helmet from "../components/Helmet";
+import Header from "./Header";
 
 export default function Browse() {
   const [language, setLanguage] = useState("");
@@ -18,11 +19,10 @@ export default function Browse() {
   if (isLoading) return <>Loading...</>;
   if (error) return <>Error</>;
 
-  console.log(data);
-
   return (
     <>
       <Helmet />
+      <Header />
       <div className="absolute inset-0 -z-20 aspect-video w-full overflow-hidden">
         {data && (
           <Image
