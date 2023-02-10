@@ -20,7 +20,7 @@ export default function NewReleases({ country }: NewReleasesProps) {
   return (
     <>
       <p className="mb-2 font-medium">New Releases</p>
-      <div className="flex gap-1 overflow-x-auto scrollbar-hide">
+      <div className="flex gap-2 overflow-x-auto scrollbar-hide">
         {data &&
           data.map((e: any) => (
             <Fragment key={e.id}>
@@ -30,7 +30,7 @@ export default function NewReleases({ country }: NewReleasesProps) {
                     draggable={false}
                     src={`https://image.tmdb.org/t/p/w300${e.poster_path}`}
                     alt={e.name}
-                    className="h-auto w-auto min-w-[100px] select-none rounded"
+                    className="h-auto w-auto min-w-[125px] select-none rounded"
                     width={200}
                     height={100}
                     priority
@@ -42,7 +42,7 @@ export default function NewReleases({ country }: NewReleasesProps) {
       </div>
 
       <p className="mb-2 font-medium">Oldies But Goodies</p>
-      <div className="flex gap-1 overflow-x-auto scrollbar-hide">
+      <div className="flex gap-2 overflow-x-auto scrollbar-hide">
         {data &&
           shuffle(data).map((e: any) => (
             <Fragment key={e.id}>
@@ -52,7 +52,7 @@ export default function NewReleases({ country }: NewReleasesProps) {
                     draggable={false}
                     src={`https://image.tmdb.org/t/p/w300${e.poster_path}`}
                     alt={e.name}
-                    className="h-auto w-auto min-w-[100px] select-none rounded"
+                    className="h-auto w-auto min-w-[125px] select-none rounded"
                     width={200}
                     height={100}
                     priority
@@ -64,7 +64,7 @@ export default function NewReleases({ country }: NewReleasesProps) {
       </div>
 
       <p className="mb-2 font-medium">Discover Something New</p>
-      <div className="flex gap-1 overflow-x-auto scrollbar-hide">
+      <div className="flex gap-2 overflow-x-auto scrollbar-hide">
         {data &&
           shuffle(data).map((e: any) => (
             <Fragment key={e.id}>
@@ -74,7 +74,7 @@ export default function NewReleases({ country }: NewReleasesProps) {
                     draggable={false}
                     src={`https://image.tmdb.org/t/p/w300${e.poster_path}`}
                     alt={e.name}
-                    className="h-auto w-auto min-w-[100px] select-none rounded"
+                    className="h-auto w-auto min-w-[125px] select-none rounded"
                     width={200}
                     height={100}
                     priority

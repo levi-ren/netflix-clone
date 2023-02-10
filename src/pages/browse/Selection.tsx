@@ -2,8 +2,6 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRandomTV } from "../../swrHooks";
-import Helmet from "../components/Helmet";
-import Header from "./Header";
 import NewReleases from "./NewReleases";
 
 interface FeaturedProps {
@@ -116,8 +114,6 @@ export default function Selection() {
 
   return (
     <>
-      <Helmet />
-      <Header />
       <div className="relative pb-[150vw] phone:pb-[56.3vw]">
         <div className="absolute inset-0  aspect-poster w-full overflow-hidden phone:aspect-video">
           {data && <Featured data={data} />}
