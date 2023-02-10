@@ -16,23 +16,26 @@ const screens = {
 export type ScreenSizes = keyof typeof screens;
 
 export const useMediaQuery = (min: ScreenSizes, max?: ScreenSizes): boolean => {
-  const [matches, setMatches] = useState(
-    window.matchMedia(
-      `(min-width: ${screens[min]}) ${
-        max ? `and (max-width: calc(${screens[max]} - 1px))` : ""
-      }`
-    ).matches
-  );
-
-  useEffect(() => {
-    window
-      .matchMedia(
+  if (typeof window !== "undefined") {
+    const [matches, setMatches] = useState(
+      window.matchMedia(
         `(min-width: ${screens[min]}) ${
           max ? `and (max-width: calc(${screens[max]} - 1px))` : ""
         }`
-      )
-      .addEventListener("change", (e) => setMatches(e.matches));
-  }, []);
+      ).matches
+    );
 
-  return matches;
+    useEffect(() => {
+      window
+        .matchMedia(
+          `(min-width: ${screens[min]}) ${
+            max ? `and (max-width: calc(${screens[max]} - 1px))` : ""
+          }`
+        )
+        .addEventListener("change", (e) => setMatches(e.matches));
+    }, []);
+
+    return matches;
+  }
+  return false;
 };

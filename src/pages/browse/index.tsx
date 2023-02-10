@@ -1,3 +1,4 @@
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRandomTV } from "../../swrHooks";
@@ -8,8 +9,7 @@ export default function Browse() {
   const [language, setLanguage] = useState("");
   const [country, setCountry] = useState("");
   const { data, isLoading, error } = useRandomTV(country, language);
-  // const { data: images } = useTVImage(language, data?.results[9].id);
-  // useDiscoverMovie(language);
+  const onMobile = useMediaQuery("xxs", "phone");
   useEffect(() => {
     const locale = navigator.language.split("-");
     setLanguage(locale[0]);
@@ -19,29 +19,33 @@ export default function Browse() {
   if (isLoading) return <>Loading...</>;
   if (error) return <>Error</>;
 
+  console.log(data);
+
   return (
     <>
       <Helmet />
       <Header />
-      <div className="absolute inset-0 -z-20 aspect-video w-full overflow-hidden">
+      <div className="absolute inset-0  aspect-poster w-full overflow-hidden phone:aspect-video">
         {data && (
           <Image
-            src={`https://image.tmdb.org/t/p/original${data?.backdrop_path}`}
+            src={`https://image.tmdb.org/t/p/original${
+              data?.[onMobile ? "poster_path" : "backdrop_path"]
+            }`}
             fill
-            alt="banner"
-            className="bg-top object-contain"
+            alt="featured-show"
+            className="object-cover phone:bg-top phone:object-contain"
             priority
           />
         )}
 
         <div className="absolute inset-0  bg-black opacity-30" />
-        {data && (
+        {/* {data && (
           <div className="absolute left-[2%] bottom-[25%]  z-10  max-w-[35vw] text-white">
             <div className="relative mb-[1vw] aspect-[16/7] w-[30vw]  overflow-hidden">
               <Image
                 src={`https://image.tmdb.org/t/p/w500${data?.logo.file_path}`}
                 fill
-                alt="banner"
+                alt="overview"
                 className="object-contain"
                 priority
               />
@@ -71,7 +75,7 @@ export default function Browse() {
               </button>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </>
   );

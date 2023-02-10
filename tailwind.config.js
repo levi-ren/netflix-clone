@@ -5,6 +5,9 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      aspectRatio: {
+        poster: "4/6",
+      },
       screens: {
         xxs: "320px",
         xs: "375px",

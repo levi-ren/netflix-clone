@@ -28,5 +28,10 @@ export default async function handler(
   );
 
   const img = await imgRespo.json();
-  res.status(200).json({ ...data.results[randShow], logo: img.logos[0] });
+
+  res.status(200).json({
+    ...data.results[randShow],
+    logo: img.logos[0],
+    poster_path: img.posters[0].file_path,
+  });
 }

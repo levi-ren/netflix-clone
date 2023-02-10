@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <main
       id="main app"
-      className={`${netflixFont.className} relative h-full min-h-full`}
+      className={`${netflixFont.className} relative h-full min-h-screen bg-black`}
     >
       <Component {...pageProps} />
     </main>
