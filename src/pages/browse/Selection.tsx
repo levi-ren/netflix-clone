@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRandomTV } from "../../swrHooks";
 import Helmet from "../components/Helmet";
 import Header from "./Header";
+import NewReleases from "./NewReleases";
 
 interface FeaturedProps {
   data: any;
@@ -26,7 +27,7 @@ const Featured = ({ data }: FeaturedProps) => {
       {!onMobile && <div className="absolute inset-0  bg-black opacity-30" />}
 
       {onMobile && (
-        <div className="absolute bottom-0 flex w-full  justify-evenly bg-gradient-to-t from-black py-8 px-4">
+        <div className="absolute bottom-0 flex w-full  justify-evenly bg-gradient-to-t from-black px-4 pt-16">
           <button className="p-2 text-center text-white">
             <Image
               src="/icons/plus.svg"
@@ -37,7 +38,7 @@ const Featured = ({ data }: FeaturedProps) => {
             />
             <span className="text-xs">My List</span>
           </button>
-          <button className="align-center flex  items-center  gap-2 rounded bg-white px-5 py-3 text-black">
+          <button className="align-center flex  items-center  gap-2 rounded bg-white px-6 py-2 text-black">
             <Image
               src="/icons/play.svg"
               width={20}
@@ -57,34 +58,8 @@ const Featured = ({ data }: FeaturedProps) => {
             <span className="text-xs">Info</span>
           </button>
         </div>
-      )}
-    </>
-  );
-};
 
-export default function Selection() {
-  const [language, setLanguage] = useState("");
-  const [country, setCountry] = useState("");
-  const { data, isLoading, error } = useRandomTV(country, language);
-  useEffect(() => {
-    const locale = navigator.language.split("-");
-    setLanguage(locale[0]);
-    setCountry(locale[1]);
-  }, []);
-
-  if (isLoading) return <>Loading...</>;
-  if (error) return <>Error</>;
-
-  console.log(data);
-
-  return (
-    <>
-      <Helmet />
-      <Header />
-      <div className="absolute inset-0  aspect-poster w-full overflow-hidden phone:aspect-video">
-        {data && <Featured data={data} />}
-
-        {/* {data && (
+        /* {data && (
           <div className="absolute left-[2%] bottom-[25%]  z-10  max-w-[35vw] text-white">
             <div className="relative mb-[1vw] aspect-[16/7] w-[30vw]  overflow-hidden">
               <Image
@@ -120,7 +95,36 @@ export default function Selection() {
               </button>
             </div>
           </div>
-        )} */}
+        )} */
+      )}
+    </>
+  );
+};
+
+export default function Selection() {
+  const [language, setLanguage] = useState("");
+  const [country, setCountry] = useState("");
+  const { data, isLoading, error } = useRandomTV(country, language);
+  useEffect(() => {
+    const locale = navigator.language.split("-");
+    setLanguage(locale[0]);
+    setCountry(locale[1]);
+  }, []);
+
+  if (isLoading) return <>Loading...</>;
+  if (error) return <>Error</>;
+
+  return (
+    <>
+      <Helmet />
+      <Header />
+      <div className="relative pb-[150vw] phone:pb-[56.3vw]">
+        <div className="absolute inset-0  aspect-poster w-full overflow-hidden phone:aspect-video">
+          {data && <Featured data={data} />}
+        </div>
+      </div>
+      <div className="p-4 text-white">
+        <NewReleases country={country} />
       </div>
     </>
   );
