@@ -28,7 +28,7 @@ const Register = () => {
             src="/icons/chevron.svg"
             height={20}
             width={20}
-            alt="logo"
+            alt="chevron"
             className="-rotate-90"
           />
         </button>
