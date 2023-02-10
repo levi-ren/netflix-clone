@@ -1,6 +1,7 @@
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import { useEffect, useRef } from "react";
+const Image = dynamic(() => import("next/image"), { ssr: false });
 
 export default function Header() {
   const navRef = useRef<HTMLElement | null>(null);
@@ -39,7 +40,7 @@ export default function Header() {
               alt="logo"
             />
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 pr-3 phone:pr-0">
             <Image
               src="/icons/magnify.svg"
               width={20}
@@ -74,8 +75,8 @@ export default function Header() {
                   className="hidden transition group-hover:rotate-180 desktop:block"
                 />
               </button>
-              <div className="invisible absolute top-6 right-0 hidden w-max  text-xs text-white opacity-0 transition duration-500 hover:visible group-hover:visible group-hover:opacity-100 desktop:block">
-                <div className="mt-3 bg-transparent" />
+              <div className="invisible absolute top-9 right-0 hidden w-max  text-xs text-white opacity-0 transition duration-500 hover:visible group-hover:visible group-hover:opacity-100 desktop:block">
+                <div className="mt-8 bg-transparent" />
                 <div className="bg-black/90 p-4">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <button
