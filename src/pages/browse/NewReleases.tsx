@@ -1,7 +1,7 @@
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useDiscoverTV } from "@/swrHooks";
 import Image from "next/image";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 interface NewReleasesProps {
   country: string;
@@ -14,6 +14,10 @@ export default function NewReleases({ country }: NewReleasesProps) {
   const split = Array.from({ length: isDesktop ? 4 : 5 }, (_, i) =>
     data?.slice(i * (!isDesktop ? 4 : 5), (i + 1) * (!isDesktop ? 4 : 5))
   );
+
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [isDesktop]);
 
   return (
     <>
@@ -58,7 +62,7 @@ export default function NewReleases({ country }: NewReleasesProps) {
               </div>
             )}
             <div
-              className="flex w-full gap-2 overflow-x-visible whitespace-nowrap transition-all duration-500"
+              className="flex w-full gap-2 overflow-x-auto  whitespace-nowrap transition-all duration-500 desktop:overflow-x-visible"
               style={{
                 transform: `translateX(calc(-${activeIndex * 100}% - ${
                   activeIndex * 8

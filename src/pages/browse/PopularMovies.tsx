@@ -1,7 +1,7 @@
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useDiscoverMovie } from "@/swrHooks";
 import Image from "next/image";
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 interface PopularMoviesProps {
   country: string;
@@ -11,11 +11,13 @@ export default function PopularMovies({ country }: PopularMoviesProps) {
   const { data } = useDiscoverMovie(country);
   const isDesktop = useMediaQuery("desktop");
   const [activeIndex, setActiveIndex] = useState(0);
-  const slider = useRef<HTMLDivElement>(null);
   const split = Array.from({ length: isDesktop ? 4 : 5 }, (_, i) =>
     data?.slice(i * (!isDesktop ? 4 : 5), (i + 1) * (!isDesktop ? 4 : 5))
   );
-  console.log(data);
+
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [isDesktop]);
 
   return (
     <>
@@ -60,8 +62,7 @@ export default function PopularMovies({ country }: PopularMoviesProps) {
               </div>
             )}
             <div
-              ref={slider}
-              className="flex w-full gap-2 overflow-x-visible whitespace-nowrap transition-all duration-500"
+              className="flex w-full gap-2 overflow-x-auto  whitespace-nowrap transition-all duration-500 desktop:overflow-x-visible"
               style={{
                 transform: `translateX(calc(-${activeIndex * 100}% - ${
                   activeIndex * 8
