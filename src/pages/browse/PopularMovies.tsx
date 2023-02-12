@@ -1,19 +1,21 @@
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { useDiscoverTV } from "@/swrHooks";
+import { useDiscoverMovie } from "@/swrHooks";
 import Image from "next/image";
-import { Fragment, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 
-interface NewReleasesProps {
+interface PopularMoviesProps {
   country: string;
 }
 
-export default function NewReleases({ country }: NewReleasesProps) {
-  const { data } = useDiscoverTV(country);
+export default function PopularMovies({ country }: PopularMoviesProps) {
+  const { data } = useDiscoverMovie(country);
   const isDesktop = useMediaQuery("desktop");
   const [activeIndex, setActiveIndex] = useState(0);
+  const slider = useRef<HTMLDivElement>(null);
   const split = Array.from({ length: isDesktop ? 4 : 5 }, (_, i) =>
     data?.slice(i * (!isDesktop ? 4 : 5), (i + 1) * (!isDesktop ? 4 : 5))
   );
+  console.log(data);
 
   return (
     <>
@@ -21,7 +23,7 @@ export default function NewReleases({ country }: NewReleasesProps) {
         <div className="group">
           <div className="xl-pb-6 flex items-end justify-between  px-6 pt-6 pb-4 desktop:px-14 ">
             <p className="text font-medium desktop:text-2xl xl:text-4xl">
-              New Releases
+              Discover Popular Movies
             </p>
             {isDesktop && (
               <div className="hidden gap-1 group-hover:flex">
@@ -58,6 +60,7 @@ export default function NewReleases({ country }: NewReleasesProps) {
               </div>
             )}
             <div
+              ref={slider}
               className="flex w-full gap-2 overflow-x-visible whitespace-nowrap transition-all duration-500"
               style={{
                 transform: `translateX(calc(-${activeIndex * 100}% - ${
@@ -89,7 +92,7 @@ export default function NewReleases({ country }: NewReleasesProps) {
                         />
                         {isDesktop && (
                           <p className="absolute bottom-0 right-1/2 w-full translate-x-1/2 px-2 text-white">
-                            {e.name}
+                            {e.title}
                           </p>
                         )}
                       </button>
