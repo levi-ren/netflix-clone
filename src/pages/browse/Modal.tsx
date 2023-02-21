@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 interface ModalProps {
@@ -12,9 +12,16 @@ interface ModalProps {
 export default function Modal({ data, setActiveMovie, children }: ModalProps) {
   const cointainer = document.getElementById("modal-container")!;
   const me = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLElement | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (me.current && data) {
+    ref.current = document.getElementById("modal-container");
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (me.current && data && mounted) {
       const meRect = me.current.getClientRects()[0];
       const meX = meRect.width / 2;
       const meY = meRect.height / 2;
@@ -26,26 +33,27 @@ export default function Modal({ data, setActiveMovie, children }: ModalProps) {
       me.current.style.top = `${centerY}px`;
       me.current.style.visibility = `visible`;
     }
-  }, [data]);
+  }, [data, mounted]);
 
   return (
     <>
-      {data &&
-        createPortal(
-          <div
-            ref={me}
-            className="invisible fixed w-full max-w-[19.8vw] overflow-hidden rounded  transition-all duration-300"
-            onMouseEnter={() => {}}
-            onPointerLeave={() => {
-              setTimeout(() => {
-                setActiveMovie(null);
-              }, 200);
-            }}
-          >
-            {children}
-          </div>,
-          cointainer
-        )}
+      {mounted
+        ? createPortal(
+            <div
+              ref={me}
+              className="invisible fixed w-full max-w-[19.8vw] overflow-hidden rounded  transition-all duration-300"
+              onMouseEnter={() => {}}
+              onPointerLeave={() => {
+                setTimeout(() => {
+                  setActiveMovie(null);
+                }, 200);
+              }}
+            >
+              {children}
+            </div>,
+            cointainer
+          )
+        : null}
     </>
   );
 }

@@ -1,9 +1,8 @@
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useDiscoverMovie, useMovieDetails } from "@/swrHooks";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import { Fragment, useEffect, useRef, useState } from "react";
-const Modal = dynamic(() => import("./Modal"), { ssr: false });
+import Modal from "./Modal";
 
 interface MovieModalProps {
   country: string;
@@ -13,7 +12,6 @@ interface MovieModalProps {
 
 const MovieModal = ({ country, id, tv }: MovieModalProps) => {
   const { data } = useMovieDetails(id, country);
-  console.log(data);
   return (
     <>
       <div className="bg-zinc-800">
