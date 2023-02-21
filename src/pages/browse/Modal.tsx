@@ -16,8 +16,10 @@ export default function Modal({ data, setActiveMovie, children }: ModalProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    ref.current = document.getElementById("modal-container");
-    setMounted(true);
+    if (typeof window !== "undefined") {
+      ref.current = document.getElementById("modal-container");
+      setMounted(true);
+    }
   }, []);
 
   useEffect(() => {
