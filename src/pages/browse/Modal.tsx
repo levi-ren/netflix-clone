@@ -7,19 +7,14 @@ interface ModalProps {
   children: ReactNode;
 }
 
-// const el = document.createElement("div");
-
 export default function Modal({ data, setActiveMovie, children }: ModalProps) {
-  const cointainer = document.getElementById("modal-container")!;
   const me = useRef<HTMLDivElement>(null);
   const ref = useRef<HTMLElement | null>(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      ref.current = document.getElementById("modal-container");
-      setMounted(true);
-    }
+    ref.current = document.getElementById("modal-container");
+    setMounted(true);
   }, []);
 
   useEffect(() => {
@@ -39,7 +34,7 @@ export default function Modal({ data, setActiveMovie, children }: ModalProps) {
 
   return (
     <>
-      {mounted
+      {mounted && ref.current
         ? createPortal(
             <div
               ref={me}
@@ -53,7 +48,7 @@ export default function Modal({ data, setActiveMovie, children }: ModalProps) {
             >
               {children}
             </div>,
-            cointainer
+            ref.current
           )
         : null}
     </>
