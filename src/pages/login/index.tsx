@@ -9,7 +9,7 @@ export default function Login() {
     <>
       <Header />
       <Helmet />
-      <div className="md:flex md:min-h-[calc(100vh_-_68px)] md:flex-col">
+      <div className="relative z-20 md:flex md:min-h-[calc(100vh_-_68px)] md:flex-col">
         <SignIn />
         <Footer
           definedItems={[
@@ -24,7 +24,7 @@ export default function Login() {
         />
       </div>
 
-      <div className="absolute top-0 -z-10 hidden h-full min-h-screen w-full overflow-hidden bg-cover md:block">
+      <div className="absolute top-0 z-10 hidden h-full min-h-screen w-full overflow-hidden bg-cover md:block">
         <Image
           src="/images/banner.jpg"
           fill
@@ -33,7 +33,7 @@ export default function Login() {
           priority
         />
       </div>
-      <div className="absolute top-0 -z-10 h-full min-h-screen w-full bg-black md:opacity-60" />
+      <div className="absolute top-0 z-10 h-full min-h-screen w-full bg-black md:opacity-60" />
     </>
   );
 }

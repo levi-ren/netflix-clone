@@ -6,7 +6,7 @@ export default function Header() {
   const { route } = useRouter();
 
   return (
-    <div id="header" className="pt-7">
+    <div id="header" className="sticky z-20 pt-7">
       <div className="m-auto max-w-screen-3xl">
         <div className="mx-4 flex items-center justify-between xs:mx-6 sm:mx-14">
           <Link
