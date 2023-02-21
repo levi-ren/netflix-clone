@@ -1,8 +1,9 @@
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useDiscoverMovie, useMovieDetails } from "@/swrHooks";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { Fragment, useEffect, useRef, useState } from "react";
-import Modal from "./Modal";
+const Modal = dynamic(() => import("./Modal"), { ssr: false });
 
 interface MovieModalProps {
   country: string;
