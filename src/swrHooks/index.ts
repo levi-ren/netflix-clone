@@ -58,3 +58,33 @@ export const useTVImage = (language: string, id: string) =>
       revalidateOnReconnect: false,
     }
   );
+
+export const useTVDetails = (id: string, country: string) =>
+  useSWR(
+    id && country ? ["/api/tvDetails?", id, country] : null,
+    ([r, id, country]) =>
+      fetcher(r, {
+        id,
+        country,
+      }),
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );
+
+export const useMovieDetails = (id: string, country: string) =>
+  useSWR(
+    id && country ? ["/api/movieDetails?", id, country] : null,
+    ([r, id, country]) =>
+      fetcher(r, {
+        id,
+        country,
+      }),
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );

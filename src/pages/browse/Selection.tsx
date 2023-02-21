@@ -110,7 +110,7 @@ export default function Selection() {
 
   return (
     <>
-      <div className="relative pb-[150vw] phone:pb-[56.3vw]">
+      <div className="relative pb-[150vw] phone:pb-[56.25vw]">
         <div className="absolute inset-0  aspect-poster w-full overflow-hidden phone:aspect-video">
           {data && <Featured data={data} />}
         </div>
@@ -121,6 +121,8 @@ export default function Selection() {
       <div className=" pb-2 text-white desktop:pb-6">
         <PopularMovies country={country} />
       </div>
+
+      <div id="modal-container" className=" bg-white text-black" />
     </>
   );
 }
